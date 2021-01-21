@@ -13,9 +13,9 @@ enum MyEnum {
 
 enum mqDirect{
     //% block="右まわり"
-    "Right",
+    Right,
     //% block="左まわり"
-    "Left"
+    Left
 }
 /**
  * カスタムブロック
@@ -53,15 +53,15 @@ namespace まくいーん {
         }
         else{
             orderFlag = true;
-            if(direction == "Right"){
+            if(direction == 0){
                 maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 64)
                 maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
             }   
-            else if(direction == "Left"){
+            else if(direction == 1){
                 maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
                 maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 64)
             }
-            await new Promise(resolve => setTimeout(resolve, time*1000))
+            basic.pause(time*1000)
             maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
             maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
             orderFlag = false;
