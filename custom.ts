@@ -20,7 +20,7 @@ enum mqDirect{
 /**
  * カスタムブロック
  */
-//% weight=100 color=#0fbc11 icon="\f2db"
+//% weight=150 color=#00ced1 icon="\f2db"
 namespace まくいーん {
     let orderFlag:boolean = false;
     /**
