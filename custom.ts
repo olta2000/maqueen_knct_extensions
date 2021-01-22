@@ -30,10 +30,10 @@ namespace まくいーん {
             orderFlag = true;
             if(direction == 0){
                 maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 64)
-                maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+                maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, 64)
             }   
             else if(direction == 1){
-                maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
+                maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, 64)
                 maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 64)
             }
             basic.pause(time*1000)
