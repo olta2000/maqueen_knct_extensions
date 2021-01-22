@@ -4,49 +4,24 @@
  * 詳しくはこちらを参照してください：https://makecode.microbit.org/blocks/custom
  */
 
-enum MyEnum {
-    //% block="one"
-    One,
-    //% block="two"
-    Two
-}
 
 enum mqDirect{
     //% block="右まわり"
-    Right,
+    Right = 0,
     //% block="左まわり"
-    Left
+    Left = 1
 }
 /**
  * カスタムブロック
  */
-//% weight=150 color=#00ced1 icon="\f044"
+//% weight=10 color=#00008b icon="\uf2db"
 namespace まくいーん {
     let orderFlag:boolean = false;
-    /**
-     * TODO: ここに関数を記述してください
-     * @param n ここでパラメーターの説明をしてください。, eg: 5
-     * @param s ここでパラメーターの説明をしてください。, eg: "Hello"
-     * @param e ここでパラメーターの説明をしてください。
-     */
-    //% block
-    export function foo(n: number, s: string, e: MyEnum): void {
-        // Add code here
-    }
 
     /**
-     * TODO: ここに関数を記述してください
-     * @param value ここで値の説明をしてください。, eg: 5
+     * @param time 何秒間回るのか, eg:0.1
      */
-    //% block
-    export function fib(value: number): number {
-        return value <= 1 ? value : fib(value -1) + fib(value - 2);
-    }
-
-    /**
-     * @param time 何秒間回るのか, eg:0.4
-     */
-    //% block
+    //% block="%time| 秒間 |%direction| に回転する"
     export function 回転する(time:number ,direction: mqDirect):void{
         if(orderFlag == true){
             return;
@@ -61,6 +36,45 @@ namespace まくいーん {
                 maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
                 maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 64)
             }
+            basic.pause(time*1000)
+            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
+            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+            orderFlag = false;
+        }
+    }
+
+    //% block="%time|秒間|%speed|の速さで後退する"
+    //% speed.min=0 speed.max=255
+    export function 後退(time:number,speed:number):void{
+        if(orderFlag == true){
+            return;
+        }
+        else {
+            if(0 > speed || 255 < speed){
+                return;
+            }
+            orderFlag = true;
+            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CCW, speed)
+            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CCW, speed)
+            basic.pause(time*1000)
+            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
+            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+            orderFlag = false;
+        }
+    }
+    //% block="%time|秒間|%speed|の速さで直進する"
+    //% speed.min=0 speed.max=255
+    export function 直進(time:number,speed:number):void{
+        if(orderFlag == true){
+            return;
+        }
+        else{
+            if( 0 > speed || 255 < speed){
+                return;
+            }
+            orderFlag = true;
+            maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, speed)
+            maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, speed)
             basic.pause(time*1000)
             maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 0)
             maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
