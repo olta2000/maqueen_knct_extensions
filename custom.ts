@@ -62,7 +62,7 @@ namespace まくいーん {
             orderFlag = false;
         }
     }
-    //% block="%time|秒間|%speed|の速さで直進する"
+    //% block="%time|秒間|%speed|の速さで直進する!"
     //% speed.min=0 speed.max=255
     export function 直進(time:number,speed:number):void{
         if(orderFlag == true){
