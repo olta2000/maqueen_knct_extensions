@@ -1,6 +1,6 @@
 {
     "name": "まくいーん",
-    "description": "",
+    "description": "高知高専作成 小中学生向けmicrobit:maqueen用教材",
     "dependencies": {
         "core": "*",
         "radio": "*",
